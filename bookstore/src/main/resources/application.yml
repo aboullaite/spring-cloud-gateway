@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: book-store
+server:
+  port: 8889
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    preferIpAddress: true

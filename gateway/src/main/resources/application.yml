@@ -1,0 +1,51 @@
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: book-store
+        uri: lb://book-store
+        predicates:
+        - Path=/api/books/**
+        filters:
+        - name: RequestRateLimiter
+          args:
+            key-resolver: '#{@userKeyResolver}'
+            redis-rate-limiter.replenishRate: 2
+            redis-rate-limiter.burstCapacity: 2
+        - RewritePath=/api/(?<books>.*), /$\{books}
+        - name: Hystrix
+          args:
+            name: booksFallbackCommand
+            fallbackUri: forward:/fallback/books
+
+
+      - id: movie-store
+        uri: lb://movie-store
+        predicates:
+        - Path=/api/movies/**
+        filters:
+        - name: RequestRateLimiter
+          args:
+            key-resolver: '#{@userKeyResolver}'
+            redis-rate-limiter.replenishRate: 2
+            redis-rate-limiter.burstCapacity: 2
+        - RewritePath=/api/(?<movies>.*), /$\{movies}
+
+server:
+  port: 8887
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka
+  instance:
+    preferIpAddress: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
