@@ -10,7 +10,7 @@
     </parent>
     <groupId>me.aboullaite</groupId>
     <artifactId>moviestore</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>moviestore</name>
     <description>Movies microservice</description>
 

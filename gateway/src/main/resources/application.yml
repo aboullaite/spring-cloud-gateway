@@ -33,6 +33,7 @@ spring:
             redis-rate-limiter.replenishRate: 2
             redis-rate-limiter.burstCapacity: 2
         - RewritePath=/api/(?<movies>.*), /$\{movies}
+        - AddResponseHeader=X-Some-Header, aboullaite.me
 
 server:
   port: 8887
