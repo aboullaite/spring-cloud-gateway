@@ -9,3 +9,5 @@ This is a small example using Spring cloud gateway and its features! This exampl
 
 You'll also need a redis instance running (on port 6379) in order to enable the request limiter of the gateway. The easiest wat is to spin up a redis instance on docker container:
 ` docker run --name some-redis -p 6379:6379 -d redis`
+
+You can read more about it here: https://aboullaite.me/spring-cloud-gateway/
