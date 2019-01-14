@@ -18,6 +18,7 @@ public class GatewayApplication {
         SpringApplication.run(GatewayApplication.class, args);
     }
 
+    // Not
     @Bean
     KeyResolver userKeyResolver() {
         return exchange -> Mono.just("fero");

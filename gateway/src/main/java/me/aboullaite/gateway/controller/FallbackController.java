@@ -13,7 +13,7 @@ import java.util.List;
 public class FallbackController {
 
     @GetMapping("/books")
-    public ResponseEntity<List> unstableBooksEndpoint(){
+    public ResponseEntity<List> booksFallback(){
         return ResponseEntity.ok(Arrays.asList());
     }
 }
